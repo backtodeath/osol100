@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./home/home.component'),
-    title: 'home.title',
+    title: 'OSOL100',
   },
   {
     path: '',
