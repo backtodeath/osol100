@@ -11,7 +11,6 @@
     "ci:frontend:test": "npm run ci:frontend:build && npm test",
     "clean-www": "rimraf target/classes/static/",
     "cleanup": "rimraf target/",
-    "install": "npm install --legacy-peer-deps",
     "jest": "jest --coverage --logHeapUsage --maxWorkers=2 --config jest.conf.js",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
