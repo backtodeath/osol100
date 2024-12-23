@@ -134,4 +134,9 @@ export default tseslint.config(
   },
   // jhipster-needle-eslint-add-config - JHipster will add additional config here
   prettier,
+  {
+    rules: {
+      'prettier/prettier': 'off',
+    },
+  },
 );

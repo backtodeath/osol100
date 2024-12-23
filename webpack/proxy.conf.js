@@ -7,6 +7,13 @@ function setupProxy({ tls }) {
       secure: false,
       changeOrigin: tls,
     },
+    {
+      context: ['/coingecko'], // Route all requests starting with /coingecko to the CoinGecko API
+      target: 'https://api.coingecko.com',
+      secure: true,
+      changeOrigin: true,
+      pathRewrite: { '^/coingecko': '' }, // Remove /coingecko prefix before forwarding to the API
+    },
   ];
 }
 

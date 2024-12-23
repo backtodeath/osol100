@@ -1,58 +1,45 @@
 <div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
-  </div>
+  <div class="col-md-12">
+    <!-- Table displaying coin data -->
+    <table *ngIf="coins.length > 0" class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Coin</th>
+          <th>Price (USD)</th>
+          <th>Market Cap</th>
+          <th>24h Change (%)</th>
+          <th>24h Volume</th>
+          <th>24h High</th>
+          <th>24h Low</th>
+          <th>Supply</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coin of coins; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <img [src]="coin.image" height="25px" alt="{{ coin.name }}" class="coin-image" />
+            {{ coin.name }} ({{ coin.symbol | uppercase }})
+          </td>
+          <td>{{ coin.current_price | number: '1.5' }}</td>
+          <td>{{ coin.market_cap | number }}</td>
+          <td [style.color]="get24hChangeColor(coin.price_change_percentage_24h)">
+            {{ coin.price_change_percentage_24h | number: '1.2-2' }}
+          </td>
+          <td>{{ coin.total_volume | number }}</td>
+          <td>{{ coin.high_24h | number }}</td>
+          <td>{{ coin.low_24h | number }}</td>
+          <td>{{ coin.circulating_supply | number }}</td>
+        </tr>
 
-  <div class="col-md-9">
-    <h1 class="display-4"><span>Welcome, Java Hipster!</span> (Osol 100)</h1>
+        <tr></tr>
+      </tbody>
+    </table>
 
-    <p class="lead">This is your homepage</p>
-
-    <div>
-      @if (account() !== null) {
-        <div class="alert alert-success">
-          @if (account(); as accountRef) {
-            <span id="home-logged-message">You are logged in as user &quot;{{ accountRef.login }}&quot;.</span>
-          }
-        </div>
-      } @else {
-        <div class="alert alert-warning">
-          <span>If you want to </span>
-          <a class="alert-link" (click)="login()">sign in</a
-          ><span
-            >, you can try the default accounts:<br />- Administrator (login=&quot;admin&quot; and password=&quot;admin&quot;) <br />- User
-            (login=&quot;user&quot; and password=&quot;user&quot;).</span
-          >
-        </div>
-
-        <div class="alert alert-warning">
-          <span>You don&apos;t have an account yet?</span>&nbsp;
-          <a class="alert-link" routerLink="/account/register">Register a new account</a>
-        </div>
-      }
+    <!-- Message when no data -->
+    <div *ngIf="isLoading" class="text-center">
+      <p>Loading data...</p>
     </div>
-
-    <p>If you have any question on JHipster:</p>
-
-    <ul>
-      <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer">JHipster homepage</a></li>
-      <li>
-        <a href="https://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer">JHipster on Stack Overflow</a>
-      </li>
-      <li>
-        <a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer"
-          >JHipster bug tracker</a
-        >
-      </li>
-      <li>
-        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">JHipster public chat room</a>
-      </li>
-      <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer">follow &#64;jhipster on Twitter</a></li>
-    </ul>
-
-    <p>
-      <span>If you like JHipster, don&apos;t forget to give us a star on</span>
-      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer">GitHub</a>!
-    </p>
   </div>
 </div>
