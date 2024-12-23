@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-md-12">
     <!-- Table displaying coin data -->
+    <div class="refresh-container">
+      <button class="btn btn-primary" (click)="manualRefresh()">
+        Refresh {{ refreshCooldown > 0 ? '(' + refreshCooldown + 's)' : '' }}
+      </button>
+    </div>
     <table *ngIf="coins.length > 0" class="table table-striped">
       <thead>
         <tr>
